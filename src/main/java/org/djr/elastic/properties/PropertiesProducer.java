@@ -13,7 +13,7 @@ import java.util.Properties;
 @ApplicationScoped
 public class PropertiesProducer {
     @Produces
-    @ElasticProperties
+    @ElasticProperties(name = "elastic.properties")
     public Properties loadConfigProperties(InjectionPoint injectionPoint)
     throws IOException {
         ElasticProperties elasticProperties = injectionPoint.getAnnotated().getAnnotation(ElasticProperties.class);

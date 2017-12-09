@@ -18,7 +18,6 @@ import java.util.Properties;
  * Created by djr4488 on 12/8/17.
  */
 @ApplicationScoped
-@ElasticSearch
 public class ElasticProducer {
     private static Logger log = LoggerFactory.getLogger(ElasticProducer.class);
     @Inject
