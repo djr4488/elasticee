@@ -20,4 +20,6 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 public @interface ElasticProperties {
     @Nonbinding
     String name() default "";
+    @Nonbinding
+    boolean inSystemEnvironment() default false;
 }

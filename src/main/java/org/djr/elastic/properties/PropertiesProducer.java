@@ -18,13 +18,18 @@ public class PropertiesProducer {
     throws IOException {
         ElasticProperties elasticProperties = injectionPoint.getAnnotated().getAnnotation(ElasticProperties.class);
         String propertyFileName = "elastic.properties";
-        if (null != elasticProperties && !"".equals(elasticProperties.name().trim())) {
-            propertyFileName = elasticProperties.name();
+        Properties prop;
+        if (elasticProperties.inSystemEnvironment()) {
+            prop = System.getProperties();
+        } else {
+            if (!"".equals(elasticProperties.name().trim())) {
+                propertyFileName = elasticProperties.name();
+            }
+            prop = new Properties();
+            InputStream in = getClass().getClassLoader().getResourceAsStream(propertyFileName);
+            prop.load(in);
+            in.close();
         }
-        Properties prop = new Properties();
-        InputStream in = getClass().getClassLoader().getResourceAsStream(propertyFileName);
-        prop.load(in);
-        in.close();
         return prop;
     }
 }
