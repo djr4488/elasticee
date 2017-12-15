@@ -19,7 +19,8 @@ public class PropertiesProducer {
         ElasticProperties elasticProperties = injectionPoint.getAnnotated().getAnnotation(ElasticProperties.class);
         String propertyFileName = "elastic.properties";
         Properties prop;
-        if (elasticProperties.inSystemEnvironment()) {
+        String isElasticPropertiesInSystemEnvironment = System.getenv("elasticPropertiesInSystemEnvironment");
+        if (null != isElasticPropertiesInSystemEnvironment && Boolean.parseBoolean(isElasticPropertiesInSystemEnvironment)) {
             prop = System.getProperties();
         } else {
             if (!"".equals(elasticProperties.name().trim())) {
