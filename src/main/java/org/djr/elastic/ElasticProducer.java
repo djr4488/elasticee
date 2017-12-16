@@ -33,6 +33,7 @@ public class ElasticProducer {
         RestHighLevelClient client = null;
         if (null != config) {
             String delineator = properties.getProperty(config.delineatorPropertyName());
+            log.debug("produceElasticSearchHighLevelRestClient() delineator:{}", delineator);
             String[] hosts = getStringArray(properties.getProperty(config.hostsPropertyName()), delineator);
             int[] ports = getIntArray(properties.getProperty(config.portsPropertyName()), delineator);
             String[] schemes = getStringArray(properties.getProperty(config.schemePropertyName()), delineator);
